@@ -12,6 +12,8 @@ RUN apk update && apk add \
     postgresql \
     postgresql-client \
     unzip \
+    nodejs \
+    npm \
     nano
 
 RUN docker-php-ext-configure pgsql

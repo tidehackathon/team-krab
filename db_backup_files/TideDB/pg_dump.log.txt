@@ -1,0 +1,249 @@
+C:\Users\atlan\AppData\Local\Programs\pgAdmin 4\v6\runtime>pg_dump.exe --file "C:\\tar\\TIDE.tar" --host "tidehackathon.postgres.database.azure.com" --port "5432" --username="tidereader" --exclude-table-data "*_id_seq" --verbose --format=t --blobs "iodashboard"
+Password:
+pg_dump: last built-in OID is 16383
+pg_dump: reading extensions
+pg_dump: identifying extension members
+pg_dump: reading schemas
+pg_dump: reading user-defined tables
+pg_dump: reading user-defined functions
+pg_dump: reading user-defined types
+pg_dump: reading procedural languages
+pg_dump: reading user-defined aggregate functions
+pg_dump: reading user-defined operators
+pg_dump: reading user-defined access methods
+pg_dump: reading user-defined operator classes
+pg_dump: reading user-defined operator families
+pg_dump: reading user-defined text search parsers
+pg_dump: reading user-defined text search templates
+pg_dump: reading user-defined text search dictionaries
+pg_dump: reading user-defined text search configurations
+pg_dump: reading user-defined foreign-data wrappers
+pg_dump: reading user-defined foreign servers
+pg_dump: reading default privileges
+pg_dump: reading user-defined collations
+pg_dump: reading user-defined conversions
+pg_dump: reading type casts
+pg_dump: reading transforms
+pg_dump: reading table inheritance information
+pg_dump: reading event triggers
+pg_dump: finding extension tables
+pg_dump: finding inheritance relationships
+pg_dump: reading column info for interesting tables
+pg_dump: finding table default expressions
+pg_dump: flagging inherited columns in subtables
+pg_dump: reading indexes
+pg_dump: flagging indexes in partitioned tables
+pg_dump: reading extended statistics
+pg_dump: reading constraints
+pg_dump: reading triggers
+pg_dump: reading rewrite rules
+pg_dump: reading policies
+pg_dump: reading row-level security policies
+pg_dump: reading publications
+pg_dump: reading publication membership of tables
+pg_dump: reading publication membership of schemas
+pg_dump: reading subscriptions
+pg_dump: reading large objects
+pg_dump: reading dependency data
+pg_dump: saving encoding = UTF8
+pg_dump: saving standard_conforming_strings = on
+pg_dump: saving search_path =
+pg_dump: saving database definition
+pg_dump: dumping contents of table "public.capabilities"
+pg_dump: dumping contents of table "public.capability_operational_domains"
+pg_dump: dumping contents of table "public.capability_tasks"
+pg_dump: dumping contents of table "public.capability_warfarelevels"
+pg_dump: dumping contents of table "public.focus_areas"
+pg_dump: dumping contents of table "public.issue_categories"
+pg_dump: dumping contents of table "public.nations"
+pg_dump: dumping contents of table "public.objectives"
+pg_dump: dumping contents of table "public.operational_domains"
+pg_dump: dumping contents of table "public.standards"
+pg_dump: dumping contents of table "public.tasks"
+pg_dump: dumping contents of table "public.test_objectives"
+pg_dump: dumping contents of table "public.test_participants"
+pg_dump: dumping contents of table "public.testcase_issue_categories"
+pg_dump: dumping contents of table "public.testcase_standards"
+pg_dump: dumping contents of table "public.testcases"
+pg_dump: dumping contents of table "public.warfare_levels"
+pg_dump: dropping DATABASE iodashboard
+pg_dump: creating DATABASE "iodashboard"
+pg_dump: connecting to new database "iodashboard"
+pg_dump: creating SCHEMA "public"
+pg_dump: creating SEQUENCE "public.capabilities_id_seq"
+pg_dump: creating TABLE "public.capabilities"
+pg_dump: creating TABLE "public.capability_operational_domains"
+pg_dump: creating TABLE "public.capability_tasks"
+pg_dump: creating TABLE "public.capability_warfarelevels"
+pg_dump: creating TABLE "public.focus_areas"
+pg_dump: creating SEQUENCE "public.focus_areas_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.focus_areas_id_seq"
+pg_dump: creating TABLE "public.issue_categories"
+pg_dump: creating SEQUENCE "public.issue_categories_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.issue_categories_id_seq"
+pg_dump: creating SEQUENCE "public.nations_id_seq"
+pg_dump: creating TABLE "public.nations"
+pg_dump: creating TABLE "public.objectives"
+pg_dump: creating SEQUENCE "public.objectives_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.objectives_id_seq"
+pg_dump: creating TABLE "public.operational_domains"
+pg_dump: creating SEQUENCE "public.operational_domains_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.operational_domains_id_seq"
+pg_dump: creating TABLE "public.standards"
+pg_dump: creating SEQUENCE "public.standards_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.standards_id_seq"
+pg_dump: creating TABLE "public.tasks"
+pg_dump: creating SEQUENCE "public.tasks_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.tasks_id_seq"
+pg_dump: creating TABLE "public.test_objectives"
+pg_dump: creating TABLE "public.test_participants"
+pg_dump: creating TABLE "public.testcase_issue_categories"
+pg_dump: creating TABLE "public.testcase_standards"
+pg_dump: creating TABLE "public.testcases"
+pg_dump: creating SEQUENCE "public.testcases_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.testcases_id_seq"
+pg_dump: creating TABLE "public.warfare_levels"
+pg_dump: creating SEQUENCE "public.warfare_levels_id_seq"
+pg_dump: creating SEQUENCE OWNED BY "public.warfare_levels_id_seq"
+pg_dump: creating DEFAULT "public.focus_areas id"
+pg_dump: creating DEFAULT "public.issue_categories id"
+pg_dump: creating DEFAULT "public.objectives id"
+pg_dump: creating DEFAULT "public.operational_domains id"
+pg_dump: creating DEFAULT "public.standards id"
+pg_dump: creating DEFAULT "public.tasks id"
+pg_dump: creating DEFAULT "public.testcases id"
+pg_dump: creating DEFAULT "public.warfare_levels id"
+pg_dump: processing data for table "public.capabilities"
+pg_dump: processing data for table "public.capability_operational_domains"
+pg_dump: processing data for table "public.capability_tasks"
+pg_dump: processing data for table "public.capability_warfarelevels"
+pg_dump: processing data for table "public.focus_areas"
+pg_dump: processing data for table "public.issue_categories"
+pg_dump: processing data for table "public.nations"
+pg_dump: processing data for table "public.objectives"
+pg_dump: processing data for table "public.operational_domains"
+pg_dump: processing data for table "public.standards"
+pg_dump: processing data for table "public.tasks"
+pg_dump: processing data for table "public.test_objectives"
+pg_dump: processing data for table "public.test_participants"
+pg_dump: processing data for table "public.testcase_issue_categories"
+pg_dump: processing data for table "public.testcase_standards"
+pg_dump: processing data for table "public.testcases"
+pg_dump: processing data for table "public.warfare_levels"
+pg_dump: creating CONSTRAINT "public.capabilities capabilities_pk"
+pg_dump: creating CONSTRAINT "public.capability_operational_domains capability_operational_domain_capability_id_operational_dom_key"
+pg_dump: creating CONSTRAINT "public.capability_tasks capability_tasks_capability_id_task_id_capability_id1_task__key"
+pg_dump: creating CONSTRAINT "public.capability_warfarelevels capability_warfarelevels_capability_id_warfarelevel_id_capa_key"
+pg_dump: creating CONSTRAINT "public.focus_areas focus_areas_pk"
+pg_dump: creating CONSTRAINT "public.issue_categories issue_categories_pkey"
+pg_dump: creating CONSTRAINT "public.nations nations_fk"
+pg_dump: creating CONSTRAINT "public.objectives objective_pk"
+pg_dump: creating CONSTRAINT "public.operational_domains operational_domains_pkey"
+pg_dump: creating CONSTRAINT "public.standards standards_pkey"
+pg_dump: creating CONSTRAINT "public.tasks tasks_pkey"
+pg_dump: creating CONSTRAINT "public.testcases testcases_pkey"
+pg_dump: creating CONSTRAINT "public.warfare_levels warfare_levels_pkey"
+pg_dump: creating FK CONSTRAINT "public.test_participants capability_testcases_fk"
+pg_dump: creating FK CONSTRAINT "public.objectives fa_objective_fk"
+pg_dump: creating FK CONSTRAINT "public.testcase_issue_categories issue_testcases_fk"
+pg_dump: creating FK CONSTRAINT "public.capabilities nation_capabilities_fk"
+pg_dump: creating FK CONSTRAINT "public.testcase_standards standards_tc_fk"
+pg_dump: creating FK CONSTRAINT "public.testcase_standards tc_standards_fk"
+pg_dump: creating FK CONSTRAINT "public.test_objectives test_objectives_objective_id_fkey"
+pg_dump: creating FK CONSTRAINT "public.test_objectives test_objectives_testcase_id_fkey"
+pg_dump: creating FK CONSTRAINT "public.testcase_issue_categories testcase_issue_fk"
+pg_dump: creating FK CONSTRAINT "public.test_participants testcases_capability_fk"
+pg_dump: creating ACL "DATABASE iodashboard"
+pg_dump: creating ACL "SCHEMA public"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_advance(text, pg_lsn)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_create(text)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_drop(text)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_oid(text)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_progress(text, boolean)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_session_is_setup()"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_session_progress(boolean)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_session_reset()"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_session_setup(text)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_xact_reset()"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_replication_origin_xact_setup(pg_lsn, timestamp with time zone)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_show_replication_origin_status(OUT local_id oid, OUT external_id text, OUT remote_lsn pg_lsn, OUT local_lsn pg_lsn)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_stat_reset()"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_stat_reset_shared(text)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_stat_reset_single_function_counters(oid)"
+pg_dump: creating ACL "pg_catalog.FUNCTION pg_stat_reset_single_table_counters(oid)"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_config.name"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_config.setting"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.line_number"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.type"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.database"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.user_name"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.address"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.netmask"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.auth_method"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.options"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_hba_file_rules.error"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_replication_origin_status.local_id"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_replication_origin_status.external_id"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_replication_origin_status.remote_lsn"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_replication_origin_status.local_lsn"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_shmem_allocations.name"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_shmem_allocations.off"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_shmem_allocations.size"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_shmem_allocations.allocated_size"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.starelid"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staattnum"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stainherit"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanullfrac"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stawidth"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stadistinct"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stakind1"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stakind2"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stakind3"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stakind4"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stakind5"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staop1"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staop2"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staop3"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staop4"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.staop5"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stacoll1"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stacoll2"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stacoll3"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stacoll4"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stacoll5"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanumbers1"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanumbers2"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanumbers3"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanumbers4"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stanumbers5"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stavalues1"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stavalues2"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stavalues3"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stavalues4"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_statistic.stavalues5"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.oid"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subdbid"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subname"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subowner"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subenabled"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subconninfo"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subslotname"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subsynccommit"
+pg_dump: creating ACL "pg_catalog.COLUMN pg_subscription.subpublications"
+pg_dump: creating ACL "public.TABLE capabilities"
+pg_dump: creating ACL "public.TABLE capability_operational_domains"
+pg_dump: creating ACL "public.TABLE capability_tasks"
+pg_dump: creating ACL "public.TABLE capability_warfarelevels"
+pg_dump: creating ACL "public.TABLE focus_areas"
+pg_dump: creating ACL "public.TABLE issue_categories"
+pg_dump: creating ACL "public.TABLE nations"
+pg_dump: creating ACL "public.TABLE objectives"
+pg_dump: creating ACL "public.TABLE operational_domains"
+pg_dump: creating ACL "public.TABLE standards"
+pg_dump: creating ACL "public.TABLE tasks"
+pg_dump: creating ACL "public.TABLE test_objectives"
+pg_dump: creating ACL "public.TABLE test_participants"
+pg_dump: creating ACL "public.TABLE testcase_issue_categories"
+pg_dump: creating ACL "public.TABLE testcase_standards"
+pg_dump: creating ACL "public.TABLE testcases"
+pg_dump: creating ACL "public.TABLE warfare_levels"

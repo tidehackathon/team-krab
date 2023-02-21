@@ -1,4 +1,4 @@
-# Laravel 9 Docker Template
+# KRAB - Interoperability Dashboard Challenge
 Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
 
 ## Features

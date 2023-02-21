@@ -21,6 +21,4 @@ Route::get("/test", function () {
     return "Hello, web";
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+Route::get('/dashboard', 'App\Http\Controllers\DashboardController@index');

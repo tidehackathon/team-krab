@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@1,200&display=swap');
+
+.b-container{
+    width:200px;
+    height:150px;
+    background-color: var(--body-background-color);;
+    margin:0px auto;
+    padding:10px;
+    font-size:30px;
+    color: var(--font-color);
+}
+.b-popup{
+    width:100%;
+    min-height:100%;
+    background-color: rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:fixed;
+    top:0px;
+}
+.b-popup .b-popup-content{
+    margin:40px auto 0px auto;
+    width:100px;
+    height: 40px;
+    padding:10px;
+    background-color: var(--body-background-color);;
+    border-radius:5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+.button {
+    background-color: rgba(0,0,0,0.5);
+    margin:5px;
+    color: var(--font-color);
+    border-radius:5px;
+}
+
+.footer {
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    margin:5px;
+    text-align:right ;
+    color: var(--font-color);
+    border-radius:5px;
+}
+
+.tittle {
+    background-color: rgba(0,0,0,0.5);
+    margin:5px;
+    width: fit-content;
+    text-align:right ;
+    color: var(--font-color);
+    border-radius:5px;
+}
+
+
+:root {
+    --body-background-color-dark: #16113A;
+    --canvas-background-color-dark: #1c3d5a;
+    --font-color-dark: #eee;
+    --block-color-dark: #272953;
+
+    --body-background-color-light: #eee;
+    --canvas-background-color-light: #ddd;
+    --font-color-light: #111;
+    --block-color-light: #efe;
+
+    --body-background-color: var(--body-background-color-dark);
+    --canvas-background-color: var(--canvas-background-color-dark);
+    --font-color: var(--font-color-dark);
+    --block-color: var(--block-color-dark);
+}
+
+body{
+    background-color: var(--body-background-color);
+}
+
+*{
+    font-family: 'Noto Sans', sans-serif;
+}
+
+canvas {
+    border:0px;
+    border-radius: 5px;
+    background: var(--canvas-background-color);
+    margin: 5px;
+    padding-bottom: 5px;
+}
+
+.canvas-block {
+    border:0px;
+    border-radius: 5px;
+    background: var(--canvas-background-color);
+    margin: 5px;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+h2 {
+    color: var(--font-color);
+    margin: auto;
+    text-align: center;
+}
+
+h3 {
+    color: var(--font-color);
+    margin: auto;
+    text-align: center;
+}
+
+.percent {
+    color: var(--font-color);
+    text-align: center;
+    margin: 10px;
+}
+
+.main-page {
+    background-color: var(--body-background-color);
+    margin: 10px;
+}
+.block {
+    background-color: var(--block-color);
+    border:0px;
+    border-radius: 10px;
+    padding: 10px;
+    margin-right:10px;
+}

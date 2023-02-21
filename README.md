@@ -100,5 +100,3 @@ Then, in the PHP container terminal, go to `src` directory by running `cd src`.
 > Your terminal needs to be inside `src` directory in PHP container terminal.
 * `npm run format` : reformat code using [Prettier](https://prettier.io/)
 * `npm run format:check` : check code format using [Prettier](https://prettier.io/)
-=======
-

@@ -1,4 +1,6 @@
-# KRAB - Interoperability Dashboard Challenge
+# team-krab
+KRAB - Interoperability Dashboard Challenge
+
 Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.
 
 ## Features
@@ -98,3 +100,5 @@ Then, in the PHP container terminal, go to `src` directory by running `cd src`.
 > Your terminal needs to be inside `src` directory in PHP container terminal.
 * `npm run format` : reformat code using [Prettier](https://prettier.io/)
 * `npm run format:check` : check code format using [Prettier](https://prettier.io/)
+=======
+

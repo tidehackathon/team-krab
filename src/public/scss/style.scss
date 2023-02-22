@@ -179,11 +179,13 @@ select::-ms-expand {
 }
 
 .styled-table {
-    border-collapse: collapse;
-    margin: 25px 0;
-    font-size: 0.9em;
-    /*font-family: sans-serif;*/
     min-width: 400px;
+    max-width: 1100px;
+
+    margin: 25px auto;
+
+    border-collapse: collapse;
+    font-size: 0.9em;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -199,6 +201,7 @@ select::-ms-expand {
     color: var(--font-color);
     border:1px solid;
     border-radius: 1px;
+    background-color: var(--body-background-color);
     /*border-color: var(--body-background-color);*/
 }
 
@@ -220,11 +223,51 @@ select::-ms-expand {
     border-color: var(--body-background-color);
 }
 
+.is-overflow-hidden {
+    overflow: hidden;
+}
 
 /** MAP **/
 @import 'https://fonts.googleapis.com/css?family=Lato';
 
+.cross {
+    z-index: 10;
+
+    position: absolute;
+    top: 10px;
+    left: 20px;
+
+    display: block;
+
+    width: 24px;
+    height: 24px;
+
+    cursor: pointer;
+
+    &:after, &:before {
+        content: '';
+        display: block;
+
+        position: absolute;
+        left: 50%;
+        top: 50%;
+
+        width: 2px;
+        height: 18px;
+
+        background: rgba(50,50,50,0.9);
+    }
+    &:after {
+        transform: translate(-50%,-50%) rotate(-45deg);
+    }
+    &:before {
+        transform: translate(-50%,-50%) rotate(45deg);
+    }
+}
+
+
 .map {
+    display: none;
     z-index: 9999;
     position: absolute;
     left: 0;
@@ -232,10 +275,14 @@ select::-ms-expand {
     bottom: 0;
     right: 0;
 
-    background: white;
+    background: rgba(255,255,255,0.99);
 
     font-family: Lato;
     font-size: 15px;
+
+    &.is-opened {
+        display: block;
+    }
 
     * {
         -webkit-box-sizing: border-box;

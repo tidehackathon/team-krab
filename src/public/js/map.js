@@ -1,6 +1,7 @@
 /**
  * Create the map
  */
+var current_selected_cc = [];
 var map = AmCharts.makeChart("chartdiv", {
     "type": "map",
     "theme": "light",
@@ -30,11 +31,38 @@ var map = AmCharts.makeChart("chartdiv", {
             area.showAsSelected = !area.showAsSelected;
             e.chart.returnInitialColor(area);
 
+            var selected_cc = getSelectedCountries();
+
+            current_selected_cc.forEach(function (country_code) {
+                if(!selected_cc.includes(country_code)) {
+                    $('.j-compare-country[data-cc="' + country_code + '"]').hide();
+                }
+            })
+
+            selected_cc.forEach(function (country_code) {
+                $('.j-compare-country[data-cc="' + country_code + '"]').show();
+            })
+
+            current_selected_cc = selected_cc;
+
             // Update the list
-            document.getElementById("selected").innerHTML = JSON.stringify(getSelectedCountries());
+            document.getElementById("selected").innerHTML = JSON.stringify(current_selected_cc);
         }
     }]
 });
+
+// map.zoomToGroup([
+//     {
+//         "id": "LT",
+//         "showAsSelected": true
+//     }
+// ]);
+
+// map.homeZoomLevel = 2
+// map.homeGeoPoint = {
+//     latitude: 52,
+//     longitude: 11
+// };
 
 /**
  * Function which extracts currently selected country list.

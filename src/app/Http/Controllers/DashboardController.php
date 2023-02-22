@@ -43,14 +43,64 @@ class DashboardController extends BaseController
             ];
         }
 
+
+        $country_compare_info = [
+            [
+                'cc' => 'UA',
+                'name' => 'Nation 1',
+                'success' => 1,
+                'limited_success' => 4,
+                'interop_issue' => 1,
+                'not_tested' => 1,
+                'pending' => 1,
+                'single_domain' => 1,
+                'multi_domain' => 1,
+                'multi_standard' => 1,
+                'tested_domains' => 1,
+                'involved_w_l' => 1,
+                'overall_level' => 3,
+            ],
+            [
+                'cc' => 'US',
+                'name' => 'Nation 2',
+                'success' => 1,
+                'limited_success' => 1,
+                'interop_issue' => 1,
+                'not_tested' => 1,
+                'pending' => 1,
+                'single_domain' => 1,
+                'multi_domain' => 1,
+                'multi_standard' => 1,
+                'tested_domains' => 1,
+                'involved_w_l' => 1,
+                'overall_level' => 1,
+            ],
+            [
+                'cc' => 'PL',
+                'name' => 'Nation 3',
+                'success' => 1,
+                'limited_success' => 1,
+                'interop_issue' => 1,
+                'not_tested' => 1,
+                'pending' => 1,
+                'single_domain' => 1,
+                'multi_domain' => 1,
+                'multi_standard' => 1,
+                'tested_domains' => 1,
+                'involved_w_l' => 1,
+                'overall_level' => 1,
+            ],
+        ];
+
 //        DB::statement('CREATE TABLE result_test_capabilities (id SERIAL PRIMARY KEY, year integer, all_value integer, multidomain integer, single integer);');
 //        DB::statement('CREATE TABLE result_test_participants (id SERIAL PRIMARY KEY, year integer, all_value integer, limited_success integer, interoperability_issue integer, not_tested integer, success integer, pending integer);');
 
         return view('dashboard')
-        ->with([
-            'years'               => $years,
-            'data_by_year'        => $data_by_year
-        ]);
+            ->with([
+                'years'                => $years,
+                'data_by_year'         => $data_by_year,
+                'country_compare_info' => $country_compare_info
+            ]);
     }
 
     public function count() {

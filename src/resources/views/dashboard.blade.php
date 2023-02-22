@@ -36,20 +36,9 @@
 </head>
 <body>
 
-<div class="map" style="display: none">
-    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
-    <script src="/js/map.js"></script>
-    <h1>Click countries to select</h1>
-    <div id="chartdiv"></div>
-    <div id="info">Seletced countries: <span id="selected">-</span></div>
-</div>
-
-
 <div style="display:flex; height: fit-content;" class="main-page">
-    <div style="width:16%;" class="block">
-        <h2 style="margin: auto; display: flex; align-items: center">
+    <div style="width:17%;" class="block">
+        <h2 style="margin: auto; display: flex; justify-content: center; align-items: center">
             <span style="margin-right: 5px">
                 Overview by
             </span>
@@ -74,50 +63,49 @@
         </div>
     </div>
 
-    <div style="width:100%;">
-        <div style="display:flex;width:100%;">
-            <div style="">
-                <div style="height:62%; margin-bottom:10px; margin-right:10px;" class="block">
-                    <h2 style="margin: auto">Capability information</h2>
+    <div style="width:100%; display: flex;">
+        <div style="width: 100%; display: flex; flex-direction: column">
+            <div style="height:62%; margin-bottom:10px; margin-right:10px;" class="block">
+                <h2 style="margin: auto">Capability information</h2>
 
-                    <div style="display: flex">
-                        <div style="position: relative;">
-                            <canvas id="capBySucc"></canvas>
-                        </div>
-
-                        <div style="position: relative;">
-                            <canvas id="capByYear"></canvas>
-                        </div>
+                <div style="display: flex">
+                    <div style="position: relative;">
+                        <canvas id="capBySucc"></canvas>
                     </div>
 
-                    <div style="position: relative;width:70%;">
-                        <canvas id="resultByDomain"></canvas>
+                    <div style="position: relative;">
+                        <canvas id="capByYear"></canvas>
                     </div>
-
                 </div>
 
-                <div class="block">
-                    <h2 style="margin: auto">Сountries interoperability</h2>
-                    <div style="display: flex">
-                        <div style="display: flex">
-                            <div class="canvas-block">
-                                <h3 style="margin: auto">Сountry 1</h3>
-                                <div id="Country1" class="percent">76,1%</div>
-                            </div>
-                            <div class="canvas-block">
-                                <h3 style="margin: auto">Сountry 2</h3>
-                                <div id="Country2" class="percent">81,4%</div>
-                            </div>
-                        </div>
-                        <div style="position: relative;">
-                            <canvas id="countryByRatio"></canvas>
-                        </div>
-                    </div>
-
+                <div style="position: relative;width:70%;">
+                    <canvas id="resultByDomain"></canvas>
                 </div>
+
             </div>
 
-            <div style="width:100%;" class="block">
+            <div class="block">
+                <h2 style="margin: auto">Сountries interoperability</h2>
+                <div style="display: flex">
+                    <div style="display: flex">
+                        <div class="canvas-block">
+                            <h3 style="margin: auto">Сountry 1</h3>
+                            <div id="Country1" class="percent">76,1%</div>
+                        </div>
+                        <div class="canvas-block">
+                            <h3 style="margin: auto">Сountry 2</h3>
+                            <div id="Country2" class="percent">81,4%</div>
+                        </div>
+                    </div>
+                    <div style="position: relative;">
+                        <canvas id="countryByRatio"></canvas>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div style="width:45%;" class="block">
                 <h2 style="margin: auto">Statistics</h2>
 
                 <div style="display: flex; margin-bottom:10px;">
@@ -133,6 +121,10 @@
                     <canvas id="testSuccRatio"></canvas>
                 </div>
 
+                <div class="j-map-trigger canvas-block">
+                    <H3>Map</H3>
+                </div>
+
                 <div class="canvas-block" onclick="PopUpShow('#allCountriesTable')">
                     <H3>Open Chart</H3>
                 </div>
@@ -140,11 +132,12 @@
                     <H3>Open Table</H3>
                 </div>
 
+                <div style="display: flex; justify-content: flex-end">
+                    <img src="/img/logo.png" alt="Logo KRAB" style="width: 150px">
+                </div>
             </div>
-        </div>
     </div>
 </div>
-
 
 <div class="b-popup" id="allCountriesTable">
     <div class="b-popup-content">
@@ -232,6 +225,73 @@
             </table>
         </div>
     </div>
+</div>
+
+<div class="j-map map">
+    <span class="j-map-trigger cross"></span>
+
+    {{--    <script src="//cdn.amcharts.com/lib/4/core.js"></script>--}}
+    {{--    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>--}}
+    {{--    <script src="//cdn.amcharts.com/lib/4/geodata/worldLow.js"></script>--}}
+    {{--    <script src="//www.amcharts.com/lib/4/themes/animated.js"></script>--}}
+
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+    <script src="/js/map.js"></script>
+    <h1>Click countries to select</h1>
+    <div id="chartdiv"></div>
+    <div id="info">Seletced countries: <span id="selected">-</span></div>
+
+    <table id="comparing_countries" class="styled-table">
+        <thead>
+        <tr>
+            <th rowspan="2">
+                <a onclick="sortTable('testTable',0,2)">Nation</a>
+                <!--                            <input type="text" class="select-dropdown" id="myInput0" onkeyup="myFunction('testTable','myInput0',0)" placeholder="Search...">-->
+            </th>
+            <th colspan="5">
+                <!--                            <a onclick="sortTable('testTable',1)">Country</a>--> <a
+                    onclick="">Numbers of tests</a>
+                <!--                            <input type="text" id="myInput1" onkeyup="myFunction('testTable','myInput1',1)" placeholder="Search...">-->
+            </th>
+            <th colspan="3">Number of capabilities tested</th>
+            <th rowspan="2">Tested domains</th>
+            <th rowspan="2">Involved warfare levels</th>
+            <th rowspan="2">
+                <a onclick="sortTable('testTable',11,2)">Overall interoperability level</a></th>
+        </tr>
+        <tr>
+            <th>Success</th>
+            <th>Limited Success</th>
+            <th>Interoperability Issue</th>
+            <th>Not Tested</th>
+            <th>Pending</th>
+            <th>Single-domain</th>
+            <th>Multi-domain</th>
+            <th>Multi-standart</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($country_compare_info as $item)
+            <tr class="j-compare-country" data-cc="{{ $item['cc'] }}" style="display: none">
+                <td>{{ $item['name'] }}</td>
+                <td>{{ $item['success'] }}</td>
+                <td>{{ $item['limited_success'] }}</td>
+                <td>{{ $item['interop_issue'] }}</td>
+                <td>{{ $item['not_tested'] }}</td>
+                <td>{{ $item['pending'] }}</td>
+                <td>{{ $item['single_domain'] }}</td>
+                <td>{{ $item['multi_domain'] }}</td>
+                <td>{{ $item['multi_standard'] }}</td>
+                <td>{{ $item['tested_domains'] }}</td>
+                <td>{{ $item['involved_w_l'] }}</td>
+                <td>{{ $item['overall_level'] }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 </div>
 
 <script src="/js/jquery-3.6.3.min.js"></script>

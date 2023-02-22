@@ -36,8 +36,8 @@
 </head>
 <body>
 
-<div style="display:flex; height: fit-content;" class="main-page">
-    <div style="width:17%;" class="block">
+<div style="display:flex; height: fit-content; flex-wrap: wrap" class="main-page">
+    <div class="main-page__1-column block">
         <h2 style="margin: auto; display: flex; justify-content: center; align-items: center">
             <span style="margin-right: 5px">
                 Overview by
@@ -62,80 +62,76 @@
             <canvas id="numOfCap"></canvas>
         </div>
     </div>
+    <div class="main-page__2-column">
+        <div style="height: min-content; margin-bottom:10px; margin-right:10px;" class="block">
+            <h2 style="margin: auto">Capability information</h2>
 
-    <div style="width:100%; display: flex;">
-        <div style="width: 100%; display: flex; flex-direction: column">
-            <div style="height:62%; margin-bottom:10px; margin-right:10px;" class="block">
-                <h2 style="margin: auto">Capability information</h2>
-
-                <div style="display: flex">
-                    <div style="position: relative;">
-                        <canvas id="capBySucc"></canvas>
-                    </div>
-
-                    <div style="position: relative;">
-                        <canvas id="capByYear"></canvas>
-                    </div>
+            <div style="display: flex">
+                <div style="position: relative; width: 50%">
+                    <canvas id="capBySucc"></canvas>
                 </div>
 
-                <div style="position: relative;width:70%;">
-                    <canvas id="resultByDomain"></canvas>
+                <div style="position: relative; width: 50%">
+                    <canvas id="capByYear"></canvas>
                 </div>
-
             </div>
 
-            <div class="block">
-                <h2 style="margin: auto">Сountries interoperability</h2>
-                <div style="display: flex">
-                    <div style="display: flex">
-                        <div class="canvas-block">
-                            <h3 style="margin: auto">Сountry 1</h3>
-                            <div id="Country1" class="percent">76,1%</div>
-                        </div>
-                        <div class="canvas-block">
-                            <h3 style="margin: auto">Сountry 2</h3>
-                            <div id="Country2" class="percent">81,4%</div>
-                        </div>
+            <div style="position: relative;width:100%;" class="full-width-canvas">
+                <canvas style="margin: 5px 0" width="100%" id="resultByDomain"></canvas>
+            </div>
+
+        </div>
+
+        <div class="block">
+            <h2 style="margin: auto">Сountries interoperability</h2>
+            <div style="display: flex">
+                <div style="display: flex; width: 25%">
+                    <div class="canvas-block">
+                        <h3 style="margin: auto">Сountry 1</h3>
+                        <div id="Country1" class="percent">76,1%</div>
                     </div>
-                    <div style="position: relative;">
-                        <canvas id="countryByRatio"></canvas>
+                    <div class="canvas-block">
+                        <h3 style="margin: auto">Сountry 2</h3>
+                        <div id="Country2" class="percent">81,4%</div>
                     </div>
                 </div>
+                <div style="position: relative; width: 75%">
+                    <canvas id="countryByRatio"></canvas>
+                </div>
+            </div>
 
+        </div>
+    </div>
+    <div class="main-page__3-column block">
+        <h2 style="margin: 0 auto">Statistics</h2>
+
+        <div style="display: flex; margin-bottom:10px;">
+            <div style="position: relative;  width:49%;">
+                <canvas id="intIndOfSucc"></canvas>
+            </div>
+            <div style="position: relative;  width:49%;">
+                <canvas id="numbOfCountries"></canvas>
             </div>
         </div>
 
-        <div style="width:45%;" class="block">
-                <h2 style="margin: auto">Statistics</h2>
+        <div style="position: relative; width:99%;">
+            <canvas id="testSuccRatio"></canvas>
+        </div>
 
-                <div style="display: flex; margin-bottom:10px;">
-                    <div style="position: relative;  width:49%;">
-                        <canvas id="intIndOfSucc"></canvas>
-                    </div>
-                    <div style="position: relative;  width:49%;">
-                        <canvas id="numbOfCountries"></canvas>
-                    </div>
-                </div>
+        <div class="j-map-trigger d-no-print canvas-block">
+            <H3>Map</H3>
+        </div>
 
-                <div style="position: relative; width:99%;">
-                    <canvas id="testSuccRatio"></canvas>
-                </div>
+        <div class="canvas-block d-no-print" onclick="PopUpShow('#allCountriesTable')">
+            <H3>Open Chart</H3>
+        </div>
+        <div class="canvas-block d-no-print" onclick="window.print();">
+            <H3>Print</H3>
+        </div>
 
-                <div class="j-map-trigger canvas-block">
-                    <H3>Map</H3>
-                </div>
-
-                <div class="canvas-block" onclick="PopUpShow('#allCountriesTable')">
-                    <H3>Open Chart</H3>
-                </div>
-                <div class="canvas-block" onclick="PopUpShow('#myTableTest')">
-                    <H3>Open Table</H3>
-                </div>
-
-                <div style="display: flex; justify-content: flex-end">
-                    <img src="/img/logo.png" alt="Logo KRAB" style="width: 150px">
-                </div>
-            </div>
+        <div style="display: flex; justify-content: flex-end; margin-top: auto" class="d-no-print">
+            <img src="/img/logo.png" alt="Logo KRAB" style="width: 150px">
+        </div>
     </div>
 </div>
 
@@ -153,82 +149,8 @@
     </div>
 </div>
 
-<div class="b-popup" id="myTableTest">
-    <div class="b-popup-content">
-        <div style="display: flex; justify-content: space-between" class="footer">
-            <div class="tittle">Test sort table</div>
-
-            <div class="button" onClick="PopUpHide('#myTableTest')">X</div>
-            <!--            <i class="fa-solid fa-xmark" onClick="PopUpHide('#allCountriesTable')"></i>-->
-        </div>
-
-        <div style="height:auto; width:auto">
-            <table id="testTable" class="styled-table">
-                <thead>
-                <tr>
-                    <th rowspan="2">
-                        <a onclick="sortTable('testTable',0,2)">Nation</a>
-                        <!--                            <input type="text" class="select-dropdown" id="myInput0" onkeyup="myFunction('testTable','myInput0',0)" placeholder="Search...">-->
-                    </th>
-                    <th colspan="5">
-                        <!--                            <a onclick="sortTable('testTable',1)">Country</a>--> <a
-                            onclick="">Numbers of tests</a>
-                        <!--                            <input type="text" id="myInput1" onkeyup="myFunction('testTable','myInput1',1)" placeholder="Search...">-->
-                    </th>
-                    <th colspan="3">Number of capabilities tested</th>
-                    <th rowspan="2">Tested domains</th>
-                    <th rowspan="2">Involved warfare levels</th>
-                    <th rowspan="2">
-                        <a onclick="sortTable('testTable',11,2)">Overall interoperability level</a></th>
-                </tr>
-                <tr>
-                    <th>Success</th>
-                    <th>Limited Success</th>
-                    <th>Interoperability Issue</th>
-                    <th>Not Tested</th>
-                    <th>Pending</th>
-                    <th>Single-domain</th>
-                    <th>Multi-domain</th>
-                    <th>Multi-standart</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Nation 1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>Aation 2</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
-
-<div class="j-map map">
-    <span class="j-map-trigger cross"></span>
+<div class="j-map d-print map">
+    <span class="j-map-trigger cross d-no-print"></span>
 
     {{--    <script src="//cdn.amcharts.com/lib/4/core.js"></script>--}}
     {{--    <script src="//cdn.amcharts.com/lib/4/maps.js"></script>--}}
@@ -240,9 +162,10 @@
     <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
     <script src="/js/map.js"></script>
-    <h1>Click countries to select</h1>
-    <div id="chartdiv"></div>
-    <div id="info">Seletced countries: <span id="selected">-</span></div>
+    <h1 class="d-no-print">Click countries to select</h1>
+    <h1 class="d-print" style="display: none">Statistics per country</h1>
+    <div id="chartdiv" class="d-no-print"></div>
+{{--    <div id="info" class="d-no-print">Selected countries: <span id="selected">-</span></div>--}}
 
     <table id="comparing_countries" class="styled-table">
         <thead>
@@ -275,7 +198,7 @@
         </thead>
         <tbody>
         @foreach($country_compare_info as $item)
-            <tr class="j-compare-country" data-cc="{{ $item['cc'] }}" style="display: none">
+            <tr class="j-compare-country d-print-table-row" data-cc="{{ $item['cc'] }}" style="display: none">
                 <td>{{ $item['name'] }}</td>
                 <td>{{ $item['success'] }}</td>
                 <td>{{ $item['limited_success'] }}</td>

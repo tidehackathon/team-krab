@@ -46,7 +46,7 @@ var map = AmCharts.makeChart("chartdiv", {
             current_selected_cc = selected_cc;
 
             // Update the list
-            document.getElementById("selected").innerHTML = JSON.stringify(current_selected_cc);
+            // document.getElementById("selected").innerHTML = JSON.stringify(current_selected_cc);
         }
     }]
 });

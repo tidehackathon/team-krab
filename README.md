@@ -2,7 +2,10 @@
 KRAB - Interoperability Dashboard Challenge
 
 ## Dashboard page
+#### Main part
 ![Screenshot 1](./screenshots/1.png?raw=true)
+#### Comparing countries by table
+![Screenshot 1](./screenshots/2.png?raw=true)
 
 ## Information about our project and set up
 Laravel 9 Docker template using PHP 8.1.6, nginx, redis, and Postgres SQL 14.4.

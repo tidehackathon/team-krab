@@ -1,4 +1,4 @@
-C:\Users\atlan\AppData\Local\Programs\pgAdmin 4\v6\runtime>pg_dump.exe --file "C:\\tar\\TIDE.tar" --host "tidehackathon.postgres.database.azure.com" --port "5432" --username="tidereader" --exclude-table-data "*_id_seq" --verbose --format=t --blobs "iodashboard"
+pg_dump.exe --file "C:\\tar\\TIDE.tar" --host "***************************" --port "*******" --username="********" --exclude-table-data "*_id_seq" --verbose --format=t --blobs "********************"
 Password:
 pg_dump: last built-in OID is 16383
 pg_dump: reading extensions

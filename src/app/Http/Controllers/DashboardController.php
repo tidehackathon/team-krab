@@ -197,4 +197,118 @@ class DashboardController extends BaseController
 
         dd($capabilities_success);
     }
+
+    public function percentTestedNations() {
+        $testedNation = Capability::all()->groupBy('nation_id')->count();
+
+        $allNation = Nation::all()->count();
+
+        $result = (100/$allNation) * $testedNation;
+
+        //dd($result,$testedNation,$allNation);
+
+        return $result;
+    }
+
+    public function testCasesByNation() {
+        $test_capability = Capability::all();
+
+        $allNationId = $test_capability->groupBy('nation_id');
+
+        foreach ($allNationId->keys() as $nationId) {
+            $result[$nationId] = $test_capability->where('nation_id', $nationId);
+
+            foreach ($result[$nationId] as $capByNation) {
+                $super_result[$nationId][] = $capByNation->id;
+            }
+        }
+
+        $operationalDomains = CapabilityOperationalDomain::all();
+
+        foreach ($super_result as $key => $_res) {
+            $super_result[$key]['md'] = 0;
+            $super_result[$key]['sd'] = 0;
+
+            foreach ($_res as $__res) {
+                $domain_res = $operationalDomains->where('capability_id',$__res)->count();
+
+                if ($domain_res>1)
+                    $super_result[$key]['md']++;
+                else if($domain_res===1)
+                    $super_result[$key]['sd']++;
+
+                $domain_res = 0;
+            }
+        }
+
+        $test_participant = TestParticipant::all();
+        //$test_participant = TestParticipant::limit(1000)->get();
+
+        foreach ($super_result as $key => $res){
+            $res_temp = $test_participant->whereIn('capability_id', $res);
+
+            $res_nation[$key] = [];
+            $res_nation[$key]['Not Tested'] = 0;
+            $res_nation[$key]['Limited Success'] = 0;
+            $res_nation[$key]['Interoperability Issue'] = 0;
+            $res_nation[$key]['Success'] = 0;
+            $res_nation[$key]['Pending'] = 0;
+            $res_nation[$key]['ratio'] = 0;
+            $res_nation[$key]['all'] = 0;
+
+            foreach ($res_temp as $res_t){
+                $res_nation[$key][$res_t->participant_result] ++;
+            }
+
+            $res_nation[$key]['ratio'] = ($res_nation[$key]['Success']+$res_nation[$key]['Limited Success']*0.5);
+            $res_nation[$key]['all'] =  $res_nation[$key]['Not Tested']+
+                $res_nation[$key]['Limited Success']+
+                $res_nation[$key]['Interoperability Issue']+
+                $res_nation[$key]['Success']+
+                $res_nation[$key]['Pending'];
+        }
+
+
+
+        $maxTestCases = 0;
+
+        foreach ($res_nation as $nation){
+            if ($maxTestCases<$nation['all'])
+                $maxTestCases = $nation['all'];
+        }
+
+        foreach ($res_nation as $nation){
+            $nation['ratio'] /= $maxTestCases;
+        }
+
+        foreach ($super_result as $key => $result){
+            $res_nation[$key]['Multidomain'] = $result['md'];
+            $res_nation[$key]['Sigledomain'] = $result['sd'];
+        }
+
+        //dd($res_nation,$maxTestCases);
+
+        return $res_nation;
+    }
+
+    public function integralIndicators() {
+        $test_participant = TestParticipant::all();
+
+        $allSuc = $test_participant
+            ->where('participant_result','Success')
+            ->count();
+
+        $allLimSuc = $test_participant
+            ->where('participant_result','Limited Success')
+            ->count();
+
+        $allTest = $test_participant->count();
+        $result = (($allSuc+$allLimSuc*0.5)/$allTest)*100;
+        $invResult = 100 - $result;
+
+        //dd($result,$invResult);
+
+        return $result;
+
+    }
 }

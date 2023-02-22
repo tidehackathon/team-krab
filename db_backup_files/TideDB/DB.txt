@@ -1,9 +1,0 @@
-tidehackathon.postgres.database.azure.com:5432
-
-#Credentials
-login: tidereader
-passwd: ioH@ck@thonReader2023!
-
-DB: iodashboard
-
-pg_dump.exe --file "C:\\Users\\atlan\\Desktop\\TIDE\\TIDE.sql" --host "tidehackathon.postgres.database.azure.com" --port "5432" --username "tidereader" --exclude-table-data "*_id_seq" --verbose --format=c --blobs "iodashboard"

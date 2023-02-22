@@ -11,76 +11,95 @@
     <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
     <script>
         var popUpWindows = ["#allCountriesTable"]
-        $(document).ready(function(){
+        $(document).ready(function () {
             //Скрыть PopUp при загрузке страницы
             PopUpHide();
-            popUpWindows.forEach(function(item, index, array) {
+            popUpWindows.forEach(function (item, index, array) {
                 PopUpHide(item);
             });
         });
+
         //Функция отображения PopUp
-        function PopUpShow(a){
+        function PopUpShow(a) {
             $(a).show();
         }
+
         //Функция скрытия PopUp
-        function PopUpHide(a){
+        function PopUpHide(a) {
             $(a).hide();
         }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
 <body>
 
+<div class="map" style="display: none">
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+    <script src="/js/map.js"></script>
+    <h1>Click countries to select</h1>
+    <div id="chartdiv"></div>
+    <div id="info">Seletced countries: <span id="selected">-</span></div>
+</div>
+
+
 <div style="display:flex; height: fit-content;" class="main-page">
-    <div style="width:12vw;" class="block">
-        <h2 style="margin: auto">
-            Overview by
-            <select class="j-select-year">
-                <option value="2021">2021</option>
-                <option value="2022" selected>2022</option>
-            </select>
+    <div style="width:16%;" class="block">
+        <h2 style="margin: auto; display: flex; align-items: center">
+            <span style="margin-right: 5px">
+                Overview by
+            </span>
+            <div class="select">
+                <select class="j-select-year">
+                    <option value="2021">2021</option>
+                    <option value="2022" selected>2022</option>
+                </select>
+            </div>
         </h2>
 
-        <div style="position: relative; height:25vh; width:40vw">
+        <div style="position: relative;">
             <canvas id="overViewChart"></canvas>
         </div>
 
-        <div style="position: relative; height:25vh; width:40vw">
+        <div style="position: relative;">
             <canvas id="testRatioData"></canvas>
         </div>
 
-        <div style="position: relative; height:25vh; width:40vw">
+        <div style="position: relative;">
             <canvas id="numOfCap"></canvas>
         </div>
     </div>
 
-    <div style="">
-        <div style="display:flex;">
+    <div style="width:100%;">
+        <div style="display:flex;width:100%;">
             <div style="">
-                <div style="width:52vw; margin-bottom:10px; margin-right:10px;" class="block">
+                <div style="height:62%; margin-bottom:10px; margin-right:10px;" class="block">
                     <h2 style="margin: auto">Capability information</h2>
 
                     <div style="display: flex">
-                        <div style="position: relative; height:22vh; width:40vw">
+                        <div style="position: relative;">
                             <canvas id="capBySucc"></canvas>
                         </div>
 
-                        <div style="position: relative; height:22vh; width:40vw">
+                        <div style="position: relative;">
                             <canvas id="capByYear"></canvas>
                         </div>
                     </div>
+
+                    <div style="position: relative;width:70%;">
+                        <canvas id="resultByDomain"></canvas>
+                    </div>
+
                 </div>
 
                 <div class="block">
                     <h2 style="margin: auto">Сountries interoperability</h2>
-                    <div class="canvas-block" onclick="PopUpShow('#allCountriesTable')">
-                        <H3>Open table</H3>
-                    </div>
-
                     <div style="display: flex">
-                        <div  >
+                        <div style="display: flex">
                             <div class="canvas-block">
                                 <h3 style="margin: auto">Сountry 1</h3>
                                 <div id="Country1" class="percent">76,1%</div>
@@ -90,7 +109,7 @@
                                 <div id="Country2" class="percent">81,4%</div>
                             </div>
                         </div>
-                        <div style="position: relative; height:20vh; width:40vw">
+                        <div style="position: relative;">
                             <canvas id="countryByRatio"></canvas>
                         </div>
                     </div>
@@ -98,42 +117,119 @@
                 </div>
             </div>
 
-            <div style="width:26vw;" class="block">
+            <div style="width:100%;" class="block">
                 <h2 style="margin: auto">Statistics</h2>
 
                 <div style="display: flex; margin-bottom:10px;">
-                    <div style="position: relative;  height:25vh; width:40vw">
+                    <div style="position: relative;  width:49%;">
                         <canvas id="intIndOfSucc"></canvas>
                     </div>
-                    <div style="position: relative;  height:25vh; width:40vw">
+                    <div style="position: relative;  width:49%;">
                         <canvas id="numbOfCountries"></canvas>
                     </div>
                 </div>
 
-                <div style="position: relative; width:26vw">
+                <div style="position: relative; width:99%;">
                     <canvas id="testSuccRatio"></canvas>
                 </div>
+
+                <div class="canvas-block" onclick="PopUpShow('#allCountriesTable')">
+                    <H3>Open Chart</H3>
+                </div>
+                <div class="canvas-block" onclick="PopUpShow('#myTableTest')">
+                    <H3>Open Table</H3>
+                </div>
+
             </div>
         </div>
     </div>
-
 </div>
 
-<!--<a href="javascript:PopUpShow('#allCountriesTable')">Show popup</a>-->
 
 <div class="b-popup" id="allCountriesTable">
-    <div class="footer">
-        <div class="tittle">Tittle</div>
-        <div class="button" onClick="PopUpHide('#allCountriesTable')">X</div>
-        <!--            <i class="fa-solid fa-xmark"></i>-->
-    </div>
-
     <div class="b-popup-content">
+        <div style="display: flex; justify-content: space-between" class="footer">
+            <div class="tittle">Test cases detailed statistics</div>
+            <div class="button" onClick="PopUpHide('#allCountriesTable')">X</div>
+            <!--            <i class="fa-solid fa-xmark" onClick="PopUpHide('#allCountriesTable')"></i>-->
+        </div>
 
-
-        <h2>Test cases detailed statistics</h2>
-        <div style=" height:20vh; width:40vw">
+        <div style="height:auto; width:auto">
             <canvas id="detailedRatio"></canvas>
+        </div>
+    </div>
+</div>
+
+<div class="b-popup" id="myTableTest">
+    <div class="b-popup-content">
+        <div style="display: flex; justify-content: space-between" class="footer">
+            <div class="tittle">Test sort table</div>
+
+            <div class="button" onClick="PopUpHide('#myTableTest')">X</div>
+            <!--            <i class="fa-solid fa-xmark" onClick="PopUpHide('#allCountriesTable')"></i>-->
+        </div>
+
+        <div style="height:auto; width:auto">
+            <table id="testTable" class="styled-table">
+                <thead>
+                <tr>
+                    <th rowspan="2">
+                        <a onclick="sortTable('testTable',0,2)">Nation</a>
+                        <!--                            <input type="text" class="select-dropdown" id="myInput0" onkeyup="myFunction('testTable','myInput0',0)" placeholder="Search...">-->
+                    </th>
+                    <th colspan="5">
+                        <!--                            <a onclick="sortTable('testTable',1)">Country</a>--> <a
+                            onclick="">Numbers of tests</a>
+                        <!--                            <input type="text" id="myInput1" onkeyup="myFunction('testTable','myInput1',1)" placeholder="Search...">-->
+                    </th>
+                    <th colspan="3">Number of capabilities tested</th>
+                    <th rowspan="2">Tested domains</th>
+                    <th rowspan="2">Involved warfare levels</th>
+                    <th rowspan="2">
+                        <a onclick="sortTable('testTable',11,2)">Overall interoperability level</a></th>
+                </tr>
+                <tr>
+                    <th>Success</th>
+                    <th>Limited Success</th>
+                    <th>Interoperability Issue</th>
+                    <th>Not Tested</th>
+                    <th>Pending</th>
+                    <th>Single-domain</th>
+                    <th>Multi-domain</th>
+                    <th>Multi-standart</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Nation 1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                </tr>
+                <tr>
+                    <td>Aation 2</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                    <td>11</td>
+                    <td>12</td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -145,7 +241,7 @@
     console.log(data_by_year);
     var current_year = $('.j-select-year').val();
 
-    $('.j-select-year').change(function (){
+    $('.j-select-year').change(function () {
         current_year = $(this).val();
 
         configSuccessfulTestChart.data.datasets[0].data = getConfigSuccessfulTestChartDatasetByCurrentYear();
@@ -183,12 +279,16 @@
     }
 </script>
 <script>
-    const BACKGROUND_COLOR = '#0081aa';
-    const BORDER_COLOR = '#0051AA';
+    const BACKGROUND_COLOR = ['#10103F', '#15155B', '#5252D7', '#6565F6', '#7979EB'];
+    const BORDER_COLOR = ['#0C0C30', '#101048', '#2C2CBD', '#2020F2', '#3939E1'];
     const TEXT_COLOR = '#eee';
+
+    const BACKGROUND_COLOR_TRUE_FALSE = ['#136906', '#8C0000'];
+    const BORDER_COLOR_TRUE_FALSE = ['#0F5005', '#710000'];
 
     Chart.defaults.color = TEXT_COLOR;
     Chart.register(ChartDataLabels);
+
 
     var dataSuccessfulTest = {
         labels: ['Success', 'Limited Success', 'Interoperability Issue', 'Not Tested', 'Pending'],
@@ -197,7 +297,7 @@
                 label: 'Successful tests number',
                 data: getConfigSuccessfulTestChartDatasetByCurrentYear(),
                 backgroundColor: BACKGROUND_COLOR,
-                borderColor: BORDER_COLOR ,
+                borderColor: BORDER_COLOR,
             }
         ]
     };
@@ -226,8 +326,8 @@
             {
                 label: 'Test ratio',
                 data: getTestRatioDataChartDatasetByCurrentYear(),
-                backgroundColor: BACKGROUND_COLOR,
-                borderColor: BORDER_COLOR ,
+                backgroundColor: BACKGROUND_COLOR_TRUE_FALSE,
+                borderColor: BORDER_COLOR_TRUE_FALSE,
             }
         ]
     };
@@ -257,7 +357,7 @@
                 label: 'Number of capability',
                 data: getConfigNumOfCapChartDatasetByCurrentYear(),
                 backgroundColor: BACKGROUND_COLOR,
-                borderColor: BORDER_COLOR ,
+                borderColor: BORDER_COLOR,
             }
         ]
     };
@@ -285,8 +385,8 @@
         datasets: [{
             label: 'Capability by successful ratio',
             data: [65, 59, 80, 81, 56, 55, 40],
-            backgroundColor: BACKGROUND_COLOR ,
-            borderColor: BORDER_COLOR ,
+            backgroundColor: BACKGROUND_COLOR,
+            borderColor: BORDER_COLOR,
             borderWidth: 1
         }]
     };
@@ -299,6 +399,10 @@
                 legend: {
                     display: false,
                     position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Number of capabilities'
                 }
             },
             scales: {
@@ -315,16 +419,15 @@
             data_by_year[year]['capabilities']['all']
         );
     });
-    // data_by_year[current_year]['capabilities']['all']
-    console.log(years);
+
     var dataCapByYear = {
         labels: years,
         datasets: [
             {
                 label: 'Dataset',
                 data: dataCapByYearData,
-                borderColor: BORDER_COLOR ,
-                backgroundColor: BACKGROUND_COLOR ,
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
                 fill: false
             }
         ]
@@ -344,7 +447,7 @@
                 },
                 title: {
                     display: true,
-
+                    text: 'Number of capabilities'
                 },
                 interaction: {
                     intersect: false,
@@ -360,7 +463,7 @@
                 label: 'Number of capability ',
                 data: [0, 15, 6],
                 backgroundColor: BACKGROUND_COLOR,
-                borderColor: BORDER_COLOR ,
+                borderColor: BORDER_COLOR,
             }
         ]
     };
@@ -383,14 +486,14 @@
         },
     };
 
-    var dataNumberOfCountries  = {
+    var dataNumberOfCountries = {
         labels: ['Red', 'Orange', 'Yellow'],
         datasets: [
             {
                 label: 'Number of countries',
                 data: [0, 15, 6],
                 backgroundColor: BACKGROUND_COLOR,
-                borderColor: BORDER_COLOR ,
+                borderColor: BORDER_COLOR,
             }
         ]
     };
@@ -418,31 +521,31 @@
         datasets: [
             {
                 label: 'Limited Success',
-                data: [11,24,12],
+                data: [11, 24, 12],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Interoperability Issue',
-                data: [3,11,15],
+                data: [3, 11, 15],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Not Tested',
-                data: [1,5,23],
+                data: [1, 5, 23],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Success',
-                data: [80,50,40],
+                data: [80, 50, 40],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Pending',
-                data: [10,10,10],
+                data: [10, 10, 10],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
@@ -456,7 +559,7 @@
             responsive: true,
             plugins: {
                 legend: {
-                    display:false,
+                    display: false,
                     position: 'top',
                 },
                 title: {
@@ -472,8 +575,8 @@
         datasets: [{
             label: 'Country by ratio',
             data: [11, 59, 80],
-            backgroundColor: BACKGROUND_COLOR ,
-            borderColor: BORDER_COLOR ,
+            backgroundColor: BACKGROUND_COLOR,
+            borderColor: BORDER_COLOR,
             borderWidth: 1
         }]
     };
@@ -486,13 +589,18 @@
                 legend: {
                     display: false,
                     position: 'top',
-                }
+                },
+                title: {
+                    display: true,
+                    text: 'Test successful ratio'
+                },
             },
             scales: {
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
+
         },
     };
 
@@ -501,31 +609,31 @@
         datasets: [
             {
                 label: 'Limited Success',
-                data: [11,11,11],
+                data: [11, 11, 11],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Interoperability Issue',
-                data: [11,11,11],
+                data: [11, 11, 11],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Not Tested',
-                data: [11,11,11],
+                data: [11, 11, 11],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Success',
-                data: [11,11,11],
+                data: [11, 11, 11],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Pending',
-                data: [11,11,11],
+                data: [11, 11, 11],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
@@ -539,12 +647,66 @@
             responsive: true,
             plugins: {
                 legend: {
-                    display:true,
+                    display: true,
                     position: 'top',
                 },
                 title: {
                     display: true,
                     text: 'Detailed test cases statistics'
+                }
+            }
+        }
+    };
+
+    var dataResultByDomain = {
+        labels: ['Land', 'Air', 'Land', 'Land', 'Land', 'Land'],
+        datasets: [
+            {
+                label: 'Limited Success',
+                data: [11, 11, 11],
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
+            },
+            {
+                label: 'Interoperability Issue',
+                data: [11, 11, 11],
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
+            },
+            {
+                label: 'Not Tested',
+                data: [11, 11, 11],
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
+            },
+            {
+                label: 'Success',
+                data: [11, 11, 11],
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
+            },
+            {
+                label: 'Pending',
+                data: [11, 11, 11],
+                borderColor: BORDER_COLOR,
+                backgroundColor: BACKGROUND_COLOR,
+            },
+        ]
+    };
+
+    var configResultByDomain = {
+        type: 'bar',
+        data: dataResultByDomain,
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: 'Test results by domain'
                 }
             }
         }
@@ -600,8 +762,38 @@
         configDetailedRatio,
     );
 
+    new Chart(
+        document.getElementById('resultByDomain'),
+        configResultByDomain,
+    );
+
 </script>
+
+<script>
+    //All popup classes
+    var popUpWindows = ["#allCountriesTable", "#myTableTest"]
+    $(document).ready(function () {
+        //Hide all popup
+        PopUpHide();
+        popUpWindows.forEach(function (item, index, array) {
+            console.log(item);
+            PopUpHide(item);
+        });
+    });
+
+    //show popup with class
+    function PopUpShow(a) {
+        $(a).show();
+    }
+
+    //Hide popup with class
+    function PopUpHide(a) {
+        $(a).hide();
+    }
+</script>
+
 {{--<script src="/js/dashboard_charts.js"></script>--}}
+<script src="/js/helper.js"></script>
 
 </body>
 </html>

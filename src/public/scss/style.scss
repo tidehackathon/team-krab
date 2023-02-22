@@ -22,27 +22,22 @@
     /*--block-color: var(--block-color-light);*/
 }
 
-body{
-    /*background-color: var(--body-background-color);*/
-    background-image: url("/img/bg.jpg");
-}
 
-div {
-    /*opacity: 0.8;*/
-    /*background-color: rgba(0,0,0,0.5);*/
-}
-
-*{
+* {
     /*font-family: 'Noto Sans', sans-serif;*/
     font-family: 'Nunito', sans-serif;
 }
 
+body{
+    background-image: url("/img/bg.jpg");
+}
+
 canvas {
-    border:0px;
+    border: 0;
     border-radius: 5px;
-    background: var(--canvas-background-color);
     margin: 5px;
     padding-bottom: 5px;
+    background: var(--canvas-background-color);
 }
 
 .canvas-block {
@@ -53,13 +48,7 @@ canvas {
     font-family: 'Noto Sans', sans-serif;
 }
 
-h2 {
-    color: var(--font-color);
-    margin: auto;
-    text-align: center;
-}
-
-h3 {
+h2, h3 {
     color: var(--font-color);
     margin: auto;
     text-align: center;
@@ -232,3 +221,45 @@ select::-ms-expand {
 }
 
 
+/** MAP **/
+@import 'https://fonts.googleapis.com/css?family=Lato';
+
+.map {
+    z-index: 9999;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    background: white;
+
+    font-family: Lato;
+    font-size: 15px;
+
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        font-weight: 400;
+        text-align: center;
+    }
+
+    #chartdiv {
+        max-width: 1100px;
+        height: 400px;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+    }
+
+    #info {
+        max-width: 1100px;
+        border: 1px solid #ddd;
+        margin: 10px auto;
+        padding: 5px 8px;
+    }
+}

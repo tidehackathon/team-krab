@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CapabilityWafarelevel extends Model {
 
-    protected $table = 'capability_wafarelevels';
+    protected $table = 'capability_warfarelevels';
     /**
      * The attributes that are mass assignable.
      *

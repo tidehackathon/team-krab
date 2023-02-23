@@ -75,17 +75,34 @@ function myFunction(tableId,inputId,tableColumnIndex) {
     }
 }
 
-var is_overflow_hidden_class = 'is-overflow-hidden';
-$('.j-map-trigger').click(function () {
-    var map_active_class = 'is-opened';
-    var map_class = 'j-map';
 
-    if(!$('.' + map_class).hasClass(map_active_class)) {
-        $('.' + map_class).addClass(map_active_class);
-        $('html').addClass(is_overflow_hidden_class)
-    }
-    else {
-        $('.' + map_class).removeClass(map_active_class);
-        $('html').removeClass(is_overflow_hidden_class)
-    }
+$(document).ready(function () {
+    var is_overflow_hidden_class = 'is-overflow-hidden';
+    $('.j-map-trigger').click(function () {
+        var map_active_class = 'is-opened';
+        var map_class = 'j-map';
+
+        if(!$('.' + map_class).hasClass(map_active_class)) {
+            $('.' + map_class).addClass(map_active_class);
+            $('html').addClass(is_overflow_hidden_class)
+        }
+        else {
+            $('.' + map_class).removeClass(map_active_class);
+            $('html').removeClass(is_overflow_hidden_class)
+        }
+    });
+
+    $('.j-rec-trigger').click(function () {
+        var rec_active_class = 'is-opened';
+        var rec_class = 'j-rec';
+
+        if(!$('.' + rec_class).hasClass(rec_active_class)) {
+            $('.' + rec_class).addClass(rec_active_class);
+            $('html').addClass(is_overflow_hidden_class)
+        }
+        else {
+            $('.' + rec_class).removeClass(rec_active_class);
+            $('html').removeClass(is_overflow_hidden_class)
+        }
+    });
 });

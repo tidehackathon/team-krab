@@ -13,14 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Route::get("/", function () {
-//    return view("welcome");
-//});
-
 Route::get('/', 'App\Http\Controllers\DashboardController@index');
+
+//Route::get('/createTables', 'App\Http\Controllers\DashboardController@createTables');
+
 Route::get('/count', 'App\Http\Controllers\DashboardController@count');
-Route::get('/testCasesByNation', 'App\Http\Controllers\DashboardController@testCasesByNation');
-Route::get('/integralIndicators', 'App\Http\Controllers\DashboardController@integralIndicators');
+Route::get('/count/testCasesByNation', 'App\Http\Controllers\DashboardController@testCasesByNation');
+Route::get('/count/integralIndicators', 'App\Http\Controllers\DashboardController@integralIndicators');
 
 
 

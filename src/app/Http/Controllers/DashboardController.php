@@ -7,6 +7,7 @@ use App\Models\CapabilityOperationalDomain;
 use App\Models\CapabilityWafarelevel;
 use App\Models\Nation;
 use App\Models\OperationalDomain;
+use App\Models\RankByDomain;
 use App\Models\ResultByNation;
 use App\Models\ResulTestParticipant;
 use App\Models\ResultTestCapability;
@@ -18,8 +19,6 @@ use Illuminate\Support\Facades\DB;
 class DashboardController extends BaseController
 {
     public function index() {
-//        $this->count_success_capability();
-//        return 1;
         $years = [
             '2021',
             '2022',
@@ -49,6 +48,7 @@ class DashboardController extends BaseController
         }
 
         $country_compare_info = ResultByNation::orderBy('rank','desc')->get();
+        $rankByDomain = RankByDomain::all();
         $warfareLevels = WarfareLevel::pluck('name','id')->toArray();
         $domains = OperationalDomain::pluck('name','id')->toArray();
 
@@ -56,14 +56,19 @@ class DashboardController extends BaseController
             ->with([
                 'years'                => $years,
                 'data_by_year'         => $data_by_year,
+
                 'country_compare_info' => $country_compare_info,
+                'rankByDomain'         => $rankByDomain,
+
+                'success_capability_sorted' => $this->count_success_capability(),
+
                 'percentTestedNations' => $this->percentTestedNations(),
                 'integralIndicators'   => $this->integralIndicators(),
 
-                'domains' => $domains,
+                'domains'     => $domains,
                 'domainsKeys' => array_keys($domains),
 
-                'warfareLevels' => $warfareLevels,
+                'warfareLevels'     => $warfareLevels,
                 'warfareLevelsKeys' => array_keys($warfareLevels),
             ]);
     }
@@ -72,9 +77,10 @@ class DashboardController extends BaseController
 //        DB::statement('CREATE TABLE result_test_capabilities (id SERIAL PRIMARY KEY, year integer, all_value integer, multidomain integer, single integer);');
 //        DB::statement('CREATE TABLE result_test_participants (id SERIAL PRIMARY KEY, year integer, all_value integer, limited_success integer, interoperability_issue integer, not_tested integer, success integer, pending integer);');
 
-        DB::statement('CREATE TABLE result_by_nations (id SERIAL PRIMARY KEY, year integer, nation_id integer, limited_success integer, interoperability_issue integer, not_tested integer, success integer,pending integer, all_value integer, ratio float, md integer, sd integer, capab_count integer, domains_id text, rank float, warvares text);');
+//        DB::statement('CREATE TABLE result_by_nations (id SERIAL PRIMARY KEY, year integer, nation_id integer, limited_success integer, interoperability_issue integer, not_tested integer, success integer,pending integer, all_value integer, ratio float, md integer, sd integer, capab_count integer, domains_id text, rank float, warvares text);');
 
-        DB::statement('CREATE TABLE indicators_by_nations (id SERIAL PRIMARY KEY, year integer, integral_indicators float, tested_nations float);');
+//        DB::statement('CREATE TABLE indicators_by_nations (id SERIAL PRIMARY KEY, year integer, integral_indicators float, tested_nations float);');
+//        DB::statement('CREATE TABLE rank_by_domains (id SERIAL PRIMARY KEY, year integer, domain_id integer, limited_success integer, interoperability_issue integer, not_tested integer, success integer,pending integer);');
     }
 
     static function getCCByNation($nationId) {
@@ -255,24 +261,26 @@ class DashboardController extends BaseController
 
     public function count_success_capability() {
         $capabilities = Capability::all();
-        $capabilities_success = [];
 
         foreach ($capabilities as $capability) {
             $capabilities_success[$capability->id] = [
                 'name' => $capability->name,
                 'success' => 0
             ];
-
-            foreach ($capability->testParticipants as $testParticipant) {
-                if($testParticipant->participant_result == 'Success') {
-                    $capabilities_success[$capability->id]['success']++;
-                }
-            }
         }
 
-        dd($capabilities_success);
-    }
+        $test_participants = TestParticipant::select('capability_id')->where('participant_result','Success')->get();
 
+        foreach ($test_participants as $res) {
+            $capabilities_success[$res->capability_id]['success']++;
+        }
+
+        usort($capabilities_success, function ($a, $b) {
+            return $b['success'] <=> $a['success'];
+        });
+
+        return $capabilities_success;
+    }
 
     public function testCasesByNation() {
         //public function myTest() {
@@ -442,7 +450,6 @@ class DashboardController extends BaseController
 //        $invResult = 100 - $result;
 
         return $result;
-
     }
 
     public function percentTestedNations() {
@@ -455,5 +462,45 @@ class DashboardController extends BaseController
         //dd($result,$testedNation,$allNation);
 
         return $result;
+    }
+
+    public function rankByDomain() {
+        $result = CapabilityOperationalDomain::all()->groupBy('operational_domain_id');
+
+        $f_result = [];
+
+        foreach ($result as $capByDom) {
+            foreach ($capByDom as $cap) {
+                $f_result[$cap->operational_domain_id][] = $cap->capability_id;
+                $m_result[$cap->operational_domain_id] = [];
+            }
+        }
+
+        $all_cap_result = TestParticipant::select('capability_id', 'participant_result')->get();
+        //$all_cap_result = TestParticipant::limit(500);
+
+        foreach ($f_result as $key => $capArray) {
+            $domain_success_result[$key]['Not Tested'] = $all_cap_result->whereIn('capability_id', $capArray)->where('participant_result','Not Tested')->count();
+            $domain_success_result[$key]['Limited Success'] = $all_cap_result->whereIn('capability_id', $capArray)->where('participant_result','Limited Success')->count();
+            $domain_success_result[$key]['Interoperability Issue'] = $all_cap_result->whereIn('capability_id', $capArray)->where('participant_result','Interoperability Issue')->count();
+            $domain_success_result[$key]['Success'] = $all_cap_result->whereIn('capability_id', $capArray)->where('participant_result','Success')->count();
+            $domain_success_result[$key]['Pending'] = $all_cap_result->whereIn('capability_id', $capArray)->where('participant_result','Pending')->count();
+        }
+
+        foreach ($domain_success_result as $domain_id => $domain_data) {
+            RankByDomain::updateOrInsert(
+                ['domain_id' => $domain_id],
+                [
+                    "year" => "2022",
+                    "not_tested" => $domain_data['Not Tested'],
+                    "limited_success" => $domain_data['Limited Success'],
+                    "interoperability_issue" => $domain_data['Interoperability Issue'],
+                    "success" => $domain_data['Success'],
+                    "pending" => $domain_data['Pending']
+                ]
+            );
+        }
+
+        return $domain_success_result;
     }
 }

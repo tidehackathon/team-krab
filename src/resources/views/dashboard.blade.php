@@ -1,33 +1,15 @@
 <!DOCTYPE html>
-{{--<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">--}}
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Dashboard</title>
+    <title>KRAB - Dashboard</title>
 
     <link rel="stylesheet" href="/css/style.css">
 
-    <script src="http://code.jquery.com/jquery-2.0.2.min.js"></script>
-    <script>
-        var popUpWindows = ["#allCountriesTable"]
-        $(document).ready(function () {
-            //Скрыть PopUp при загрузке страницы
-            PopUpHide();
-            popUpWindows.forEach(function (item, index, array) {
-                PopUpHide(item);
-            });
-        });
-
-        //Функция скрытия PopUp
-        function PopUpHide(a) {
-            $(a).hide();
-        }
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script
-        src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0/dist/chartjs-plugin-datalabels.min.js"></script>
 </head>
 <body>
 
@@ -73,70 +55,97 @@
             <h2 style="margin: auto">Capability information</h2>
 
             <div style="display: flex; justify-content: space-between">
-                <div style="position: relative; width: 45%">
+                <div style="position: relative; width: 49%">
                     <canvas id="capBySucc"></canvas>
                 </div>
 
-                <div style="position: relative; width: 45%">
+                <div style="position: relative; width: 49%">
                     <canvas id="capByYear"></canvas>
                 </div>
             </div>
 
-            <div style="position: relative; margin: auto; width:60%;" class="full-width-canvas">
+            <div style="position: relative; margin: auto; width:100%;" class="full-width-canvas">
                 <canvas style="margin: 5px 0" width="100%" id="resultByDomain"></canvas>
+            </div>
+        </div>
+
+        <div class="block d-no-print">
+            <div style="display: flex;">
+                <div class="j-map-trigger d-no-print canvas-block btn" style="margin-right: 10px; padding: 5px 30px">
+                    <H3>Country comparing</H3>
+                </div>
+
+                <div class="j-rec-trigger d-no-print canvas-block btn" style="margin-right: 10px; padding: 5px 30px">
+                    <H3>Recommendations</H3>
+                </div>
+
+                <div class="canvas-block d-no-print btn" onclick="window.print();" style="padding: 5px 30px">
+                    <H3>Print</H3>
+                </div>
+
+
+                <div style="display: flex; justify-content: flex-end; margin-left: auto" class="d-no-print">
+                    <img src="/img/logo.png" alt="Logo KRAB" style="width: 150px">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="main-page__3-column">
+        <div class="block" style="margin-bottom: 20px">
+            <h2 style="margin: 0 auto">Tests Statistics</h2>
+
+            <div style="display: flex; margin-bottom:10px;">
+                <div style="position: relative;  width:49%;">
+                    <canvas id="intIndOfSucc"></canvas>
+                </div>
+                <div style="position: relative;  width:49%;">
+                    <canvas id="numbOfCountries"></canvas>
+                </div>
+            </div>
+
+            <div style="position: relative; width:99%;">
+                <canvas id="testSuccRatio"></canvas>
             </div>
         </div>
 
         <div class="block">
             <h2 style="margin: auto">Сountries interoperability</h2>
-            <div style="display: flex">
-                <div style="display: flex; width: 40%;">
-                    <div class="canvas-block" style="width: 100%">
-                        <h3 style="margin: auto">Сountry 1</h3>
-                        <div id="Country1" class="percent">76,1%</div>
-                    </div>
-                    <div class="canvas-block" style="width: 100%">
-                        <h3 style="margin: auto">Сountry 2</h3>
-                        <div id="Country2" class="percent">81,4%</div>
+            <div style="display: flex; flex-direction: column">
+                <div style="display: flex; flex-direction: column; width: 100%">
+                    <span class="select-title-comparing" style="margin-top: 15px">Select countries for comparing</span>
+                    <div style="display: flex; ">
+                        <div class="canvas-block" style="width: 100%">
+                            <h3 style="margin: auto">
+                                <div class="select" style="width: 100%; text-align: center">
+                                    <select class="j-compare-select-1" style="width: 100%; text-align: center">
+                                        @foreach($country_compare_info->sortBy('nation_id') as $key => $nation)
+                                            @if($nation['rank'])
+                                                <option value="{{ $key }}">Nation {{ $nation['nation_id'] + 1 }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </h3>
+                            <div class="j-compare-value-1 percent"></div>
+                        </div>
+                        <div class="canvas-block" style="width: 100%">
+                            <h3 style="margin: auto">
+                                <div class="select" style="width: 100%; text-align: center">
+                                    <select class="j-compare-select-2" style="width: 100%; text-align: center">
+                                        @foreach($country_compare_info->sortBy('nation_id') as $key => $nation)
+                                            <option value="{{ $key }}">Nation {{ $nation['nation_id'] + 1 }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </h3>
+                            <div class="j-compare-value-2 percent"></div>
+                        </div>
                     </div>
                 </div>
-                <div style="position: relative; margin-left: auto; width: 50%">
+                <div style="position: relative; margin-left: auto; width: 100%">
                     <canvas id="countryByRatio"></canvas>
                 </div>
             </div>
-
-        </div>
-    </div>
-    <div class="main-page__3-column block">
-        <h2 style="margin: 0 auto">Tests Statistics</h2>
-
-        <div style="display: flex; margin-bottom:10px;">
-            <div style="position: relative;  width:49%;">
-                <canvas id="intIndOfSucc"></canvas>
-            </div>
-            <div style="position: relative;  width:49%;">
-                <canvas id="numbOfCountries"></canvas>
-            </div>
-        </div>
-
-        <div style="position: relative; width:99%;">
-            <canvas id="testSuccRatio"></canvas>
-        </div>
-
-        <div class="j-map-trigger d-no-print canvas-block btn">
-            <H3>Country comparing</H3>
-        </div>
-
-        <div class="j-rec-trigger d-no-print canvas-block btn">
-            <H3>Recommendations</H3>
-        </div>
-
-        <div class="canvas-block d-no-print btn" onclick="window.print();">
-            <H3>Print</H3>
-        </div>
-
-        <div style="display: flex; justify-content: flex-end; margin-top: auto" class="d-no-print">
-            <img src="/img/logo.png" alt="Logo KRAB" style="width: 150px">
         </div>
     </div>
 </div>
@@ -230,11 +239,20 @@
         <tbody>
             <tr>
                 <td>Existing capabilities to be tested</td>
-                <td>CAB-001, CAB-002, CAB-004</td>
+                <td>
+                    @php
+                    $key = array_key_last($success_capability_sorted);
+                    @endphp
+                    {{ $success_capability_sorted[$key - 1]['name'] }},
+                    {{ $success_capability_sorted[$key - 2]['name'] }},
+                    {{ $success_capability_sorted[$key - 3]['name'] }},
+                    {{ $success_capability_sorted[$key - 4]['name'] }},
+                    {{ $success_capability_sorted[$key - 5]['name'] }}
+                </td>
             </tr>
             <tr>
                 <td>Capabilities to be deployed (from NDPP list)</td>
-                <td>CAB-002</td>
+                <td></td>
             </tr>
         </tbody>
     </table>
@@ -245,16 +263,15 @@
                 <th colspan="7" style="text-align: center">Recommendations for the nations
                 </th>
             </tr>
-
-        <tr>
-            <th rowspan="3">
-                <a onclick="sortTable('testTable',0,2)">Nation</a>
-                <!--                            <input type="text" class="select-dropdown" id="myInput0" onkeyup="myFunction('testTable','myInput0',0)" placeholder="Search...">-->
-            </th>
-            <th colspan="6" style="text-align: center">
-                List of national parameters
-            </th>
-        </tr>
+            <tr>
+                <th rowspan="3">
+                    <a onclick="sortTable('testTable',0,2)">Nation</a>
+                    <!--                            <input type="text" class="select-dropdown" id="myInput0" onkeyup="myFunction('testTable','myInput0',0)" placeholder="Search...">-->
+                </th>
+                <th colspan="6" style="text-align: center">
+                    List of national parameters
+                </th>
+            </tr>
             <tr>
                 <th rowspan="2">Number of tests</th>
                 <th colspan="3" style="text-align: center">Number of capabilities tested</th>
@@ -344,7 +361,11 @@
     var years = {!! json_encode($years) !!};
     var data_by_year = {!! json_encode($data_by_year) !!};
     var country_compare_info = {!! json_encode($country_compare_info) !!};
+    var rankByDomain = {!! json_encode($rankByDomain) !!};
+    var success_capability_sorted = {!! json_encode($success_capability_sorted) !!};
+
     var current_year = $('.j-select-year').val();
+
 
     $('.j-select-year').change(function () {
         current_year = $(this).val();
@@ -358,6 +379,20 @@
         configNumOfCapChart.data.datasets[0].data = getConfigNumOfCapChartDatasetByCurrentYear();
         configNumOfCapChart.update();
     });
+
+
+    $('.j-compare-value-1').html((Math.round(country_compare_info[$('.j-compare-select-1').val()]['rank'] * 10000) / 100) + '%');
+    $('.j-compare-value-2').html((Math.round(country_compare_info[$('.j-compare-select-2').val()]['rank'] * 10000) / 100) + '%');
+
+    $('.j-compare-select-1').change(function () {
+        $('.j-compare-value-1').html((Math.round(country_compare_info[$(this).val()]['rank'] * 10000) / 100) + '%');
+    });
+
+    $('.j-compare-select-2').change(function () {
+        $('.j-compare-value-2').html((Math.round(country_compare_info[$(this).val()]['rank'] * 10000) / 100) + '$');
+    });
+
+
 
     function getConfigSuccessfulTestChartDatasetByCurrentYear() {
         let all_value = data_by_year[current_year]['test_participants']['Success'] +
@@ -415,7 +450,6 @@
     Chart.defaults.color = TEXT_COLOR;
     Chart.register(ChartDataLabels);
 
-
     var dataSuccessfulTest = {
         labels: ['Success', 'Limited Success', 'Interoperability Issue', 'Not Tested', 'Pending'],
         datasets: [
@@ -440,7 +474,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Test ratio'
+                    text: 'Detailed tests statistics'
                 },
             }
         },
@@ -470,7 +504,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Successful tests number'
+                    text: 'Successful tests ratio'
                 }
             }
         },
@@ -480,7 +514,7 @@
         labels: ['Multidomain', 'Unimodal'],
         datasets: [
             {
-                label: 'Number of capability',
+                label: 'Percent',
                 data: getConfigNumOfCapChartDatasetByCurrentYear(),
                 backgroundColor: BACKGROUND_COLOR_TRUE_FALSE,
                 borderColor: BORDER_COLOR_TRUE_FALSE,
@@ -500,17 +534,34 @@
                 },
                 title: {
                     display: true,
-                    text: 'Number of capabilities'
+                    text: 'Capabilities tested statistics'
                 }
             }
         },
     };
 
+
     var dataCapBySuccRatio = {
-        labels: ['Red', 'Orange', 'Yellow'],
+        labels: [
+            success_capability_sorted[0]['name'],
+            success_capability_sorted[1]['name'],
+            success_capability_sorted[2]['name'],
+            success_capability_sorted[3]['name'],
+            success_capability_sorted[4]['name'],
+            success_capability_sorted[5]['name'],
+            success_capability_sorted[6]['name'],
+        ],
         datasets: [{
             label: 'Capability by successful ratio',
-            data: [65, 59, 80, 81, 56, 55, 40],
+            data: [
+                success_capability_sorted[0]['success'],
+                success_capability_sorted[1]['success'],
+                success_capability_sorted[2]['success'],
+                success_capability_sorted[3]['success'],
+                success_capability_sorted[4]['success'],
+                success_capability_sorted[5]['success'],
+                success_capability_sorted[6]['success'],
+            ],
             backgroundColor: BACKGROUND_COLOR,
             borderColor: BORDER_COLOR,
             borderWidth: 1
@@ -528,7 +579,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Number of capabilities'
+                    text: 'Capabilities with the highest rank'
                 }
             },
             scales: {
@@ -573,7 +624,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Number of capabilities'
+                    text: 'Number of capabilities tested'
                 },
                 interaction: {
                     intersect: false,
@@ -581,7 +632,6 @@
             }
         }
     };
-
 
     var dataIntIndOfSuccValue = parseInt({{ $integralIndicators }},10);
 
@@ -647,44 +697,66 @@
                 },
                 title: {
                     display: true,
-                    text: 'Number of countries '
+                    text: 'Number of countries involved'
                 }
             }
         },
     };
 
-
-
     var dataTestSuccRatio = {
-        labels: ['Ukraine 2', 'USA', 'GB'],
+        labels: [
+            'Nation ' + country_compare_info[0]['nation_id'],
+            'Nation ' + country_compare_info[1]['nation_id'],
+            'Nation ' + country_compare_info[2]['nation_id']
+        ],
         datasets: [
             {
                 label: 'Limited Success',
-                data: [11, 24, 12],
+                data: [
+                    country_compare_info[0]['limited_success'],
+                    country_compare_info[1]['limited_success'],
+                    country_compare_info[2]['limited_success'],
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Interoperability Issue',
-                data: [3, 11, 15],
+                data: [
+                    country_compare_info[0]['interoperability_issue'],
+                    country_compare_info[1]['interoperability_issue'],
+                    country_compare_info[2]['interoperability_issue'],
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Not Tested',
-                data: [1, 5, 23],
+                data: [
+                    country_compare_info[0]['not_tested'],
+                    country_compare_info[1]['not_tested'],
+                    country_compare_info[2]['not_tested'],
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Success',
-                data: [80, 50, 40],
+                data: [
+                    country_compare_info[0]['success'],
+                    country_compare_info[1]['success'],
+                    country_compare_info[2]['success'],
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Pending',
-                data: [10, 10, 10],
+                data: [
+                    country_compare_info[0]['pending'],
+                    country_compare_info[1]['pending'],
+                    country_compare_info[2]['pending'],
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
@@ -709,8 +781,6 @@
         },
     };
 
-
-    console.log(country_compare_info[0]['rank']);
     var dataCountryByRatio = {
         labels: [
             'Nation ' + country_compare_info[0]['nation_id'],
@@ -745,7 +815,7 @@
                 },
                 title: {
                     display: true,
-                    text: 'Test successful ratio'
+                    text: 'Integral interoperability value'
                 },
             },
             scales: {
@@ -811,36 +881,80 @@
         }
     };
 
+
+    console.log(rankByDomain);
     var dataResultByDomain = {
-        labels: ['Land', 'Air', 'Land', 'Land', 'Land', 'Land'],
+        labels: [
+            '{{ $domains[$rankByDomain[0]['domain_id']] }}',
+            '{{ $domains[$rankByDomain[1]['domain_id']] }}',
+            '{{ $domains[$rankByDomain[2]['domain_id']] }}',
+            '{{ $domains[$rankByDomain[3]['domain_id']] }}',
+            '{{ $domains[$rankByDomain[4]['domain_id']] }}',
+            '{{ $domains[$rankByDomain[5]['domain_id']] }}'
+        ],
         datasets: [
             {
                 label: 'Limited Success',
-                data: [11, 11, 11],
+                data: [
+                    rankByDomain[0]['limited_success'],
+                    rankByDomain[1]['limited_success'],
+                    rankByDomain[2]['limited_success'],
+                    rankByDomain[3]['limited_success'],
+                    rankByDomain[4]['limited_success'],
+                    rankByDomain[5]['limited_success']
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Interoperability Issue',
-                data: [11, 11, 11],
+                data: [
+                    rankByDomain[0]['interoperability_issue'],
+                    rankByDomain[1]['interoperability_issue'],
+                    rankByDomain[2]['interoperability_issue'],
+                    rankByDomain[3]['interoperability_issue'],
+                    rankByDomain[4]['interoperability_issue'],
+                    rankByDomain[5]['interoperability_issue']
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Not Tested',
-                data: [11, 11, 11],
+                data: [
+                    rankByDomain[0]['not_tested'],
+                    rankByDomain[1]['not_tested'],
+                    rankByDomain[2]['not_tested'],
+                    rankByDomain[3]['not_tested'],
+                    rankByDomain[4]['not_tested'],
+                    rankByDomain[5]['not_tested']
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Success',
-                data: [11, 11, 11],
+                data: [
+                    rankByDomain[0]['success'],
+                    rankByDomain[1]['success'],
+                    rankByDomain[2]['success'],
+                    rankByDomain[3]['success'],
+                    rankByDomain[4]['success'],
+                    rankByDomain[5]['success']
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },
             {
                 label: 'Pending',
-                data: [11, 11, 11],
+                data: [
+                    rankByDomain[0]['pending'],
+                    rankByDomain[1]['pending'],
+                    rankByDomain[2]['pending'],
+                    rankByDomain[3]['pending'],
+                    rankByDomain[4]['pending'],
+                    rankByDomain[5]['pending']
+                ],
                 borderColor: BORDER_COLOR,
                 backgroundColor: BACKGROUND_COLOR,
             },

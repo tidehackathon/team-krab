@@ -385,6 +385,11 @@ body{
     font-weight: bold;
 }
 
+.select-title-comparing {
+    color: white;
+    text-align: center;
+    font-size: 1.2rem;
+}
 
 
 
@@ -438,7 +443,7 @@ body{
 
 
     // whited
-    select, input, .chart-value, .canvas-block * {
+    select, input, .chart-value, .canvas-block *, .select-title-comparing {
         color: white !important;
     }
 

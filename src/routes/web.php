@@ -15,11 +15,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'App\Http\Controllers\DashboardController@index');
 
-//Route::get('/createTables', 'App\Http\Controllers\DashboardController@createTables');
+Route::get('/createTables', 'App\Http\Controllers\DashboardController@createTables');
 
 Route::get('/count', 'App\Http\Controllers\DashboardController@count');
 Route::get('/count/testCasesByNation', 'App\Http\Controllers\DashboardController@testCasesByNation');
 Route::get('/count/integralIndicators', 'App\Http\Controllers\DashboardController@integralIndicators');
+Route::get('/count/rankByDomain', 'App\Http\Controllers\DashboardController@rankByDomain');
+Route::get('/count/count_success_capability', 'App\Http\Controllers\DashboardController@count_success_capability');
+
+
 
 
 
